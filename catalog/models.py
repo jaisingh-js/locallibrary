@@ -23,6 +23,8 @@ class Book(models.Model):
 
     genre = models.ManyToManyField(Genre, help_text='Select a genre for this book')
 
+    language = models.ForeignKey('Language', null=True, blank=True, help_text='Language of the book', on_delete=models.SET_NULL)
+
 
     def __str__(self):
         return self.title
@@ -82,3 +84,11 @@ class Author(models.Model):
 
     def __str__(self):
         return f'{self.last_name}, {self.first_name}'
+
+
+
+class Language(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
